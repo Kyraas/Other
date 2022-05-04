@@ -1,0 +1,23 @@
+        var = tk.StringVar()    # IntVar нам по сути и не нужен, нам все равно передавать одни и те же значения цвета
+        var.set("blue") # Изначально наш (твой) треугольник синий
+
+        #Рисуем базовый треугольник
+        rectangle = canv.create_polygon([x0+x1,y0-y1], [x0+x2,y0-y2], [x0+x3,y0-y3], fill="blue")   # тут я присваиваю треугольник переменной rectangle для дальнейшей работы с ним
+        canv.pack() # не знаю куда в код вставлять это. Решать тебе
+
+        # Класс для создания кнопок
+        class RBColor:
+            def __init__(self, color):
+                tk.Radiobutton(ButtonFrame, text=color, variable=var, value=color, command=paint).pack(anchor='w')  # anchor выравнивает все кнопки на west (запад)
+
+        # Рисуем треугольник в зависимости от выбранного цвета
+        def paint():
+            canv.itemconfig(rectangle, fill=var.get())  # функция получает текущее значение переменной var, котрая хранит цвет
+        
+        # Создаем кнопки
+        RBColor('blue')
+        RBColor('red')
+        RBColor('green')
+        RBColor('yellow')
+        RBColor('orange')
+        RBColor('pink')
